@@ -1,4 +1,5 @@
 from datetime import datetime
+from enum import Enum
 from pydantic import BaseModel, EmailStr, conint
 from typing import Optional
 
@@ -53,3 +54,30 @@ class PostLikes (BaseModel):
     likes_count: int
     class Config:
         from_attributes = True
+
+
+class FriendshipStatus(str, Enum):
+    pending = 'pending'
+    accepted = 'accepted'
+    rejected = 'rejected'
+
+class Friendship(BaseModel):
+    user_id: int
+    friend_id: int
+    status: FriendshipStatus
+
+class Comment(BaseModel):
+    id: int
+    content: str
+
+class CommentResponse(Comment):
+    created_at: datetime
+    post_id: str
+    class Config:
+        from_attributes = True
+
+class Message(BaseModel):
+    sender_id: int
+    receiver_id: int
+    content: str
+    created_at: datetime

@@ -9,8 +9,8 @@ from .. import models, schemas
 from ..database import get_db
 
 router = APIRouter(
-    prefix="/posts", 
-    tags= ['Post']
+    prefix="/messages", 
+    tags= ['Messages']
 )
 
 #getting all posts in the database (as long as user is logged in)
