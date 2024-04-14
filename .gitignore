@@ -1,3 +1,4 @@
 __pycache__
 smapivenv/
 .env
+.DS_Store
