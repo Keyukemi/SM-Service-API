@@ -13,7 +13,6 @@ class CreateUser(BaseModel):
 class UserResponse(BaseModel):
     id: int
     name: str
-    email: EmailStr
     class Config:
         from_attributes = True
 
@@ -66,18 +65,34 @@ class Friendship(BaseModel):
     friend_id: int
     status: FriendshipStatus
 
-class Comment(BaseModel):
+class FriendshipRequest (BaseModel):
+    status: FriendshipStatus
+
+class FriendshipResponse(BaseModel):
     id: int
+    status: str
+    updated_at: datetime
+    class Config:
+        from_attributes = True
+
+class Comment(BaseModel):
+    post_id: int
     content: str
 
 class CommentResponse(Comment):
+    post_owner: str
+    commenter: str
     created_at: datetime
-    post_id: str
     class Config:
         from_attributes = True
 
 class Message(BaseModel):
-    sender_id: int
     receiver_id: int
     content: str
+
+class MessageResponse(Message):
+    id: int 
+    sender_id: int
     created_at: datetime
+    class Config:
+        from_attributes = True
