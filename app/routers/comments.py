@@ -11,7 +11,7 @@ router = APIRouter(
     tags= ['Comments']
 )
 
-#creating a message
+#creating a comment
 @router.post("/", status_code=status.HTTP_201_CREATED, response_model= schemas.CommentResponse)
 def create_message(comment: schemas.Comment, db: Session = Depends(get_db), 
                  current_user: int = Depends(oauth2.get_current_user)):
@@ -36,7 +36,7 @@ def create_message(comment: schemas.Comment, db: Session = Depends(get_db),
     }
     return response
 
-#getting messages
+#getting comments
 @router.get("/{id}",)
 def get_comments(id:int, db: Session = Depends(get_db), 
               current_user: int = Depends(oauth2.get_current_user),
